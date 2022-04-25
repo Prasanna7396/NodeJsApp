@@ -1,15 +1,13 @@
-FROM openjdk:11
+FROM node:14
 
 LABEL maintainer="prasanna.jadhav104@gmail.com"
 
-RUN mkdir -p /opt/NodeJsApp
+WORKDIR /usr/src/app
 
-RUN apt update && \
-    apt install curl && \
-    apt-get install npm
+COPY . ,
 
-WORKDIR /opt/NodeJsApp
+RUN npm install
 
-COPY . /opt/NodeJsApp
+EXPOSE 8050
 
 CMD ["node","index.js"]
