@@ -45,7 +45,7 @@ pipeline {
         stage('SonarQube Analysis'){
              steps {
                withSonarQubeEnv('sonarqube-8.9.2') { 
-				sh "mvn sonar:sonar -Dsonar.projectKey=NodeApp"
+		sh "mvn sonar:sonar -Dsonar.projectKey=NodeApp"
             }
           }
         }
@@ -53,10 +53,11 @@ pipeline {
              steps {
 		  withCredentials([string(credentialsId: 'AWS-CREDENTIALS', variable: 'AWS_ECR_URL')]) {
                   echo "Creating the docker image"
-		          
-				  docker.build("${AWS_ECR_URL}:${POM_VERSION}", " .")
-               }
+		  script {        
+		   docker.build("${AWS_ECR_URL}:${POM_VERSION}", " .")
+                  }
+	     }
 	  }
-    }	
-  }
+       }	
+   }
 }
