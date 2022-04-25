@@ -7,7 +7,6 @@ pipeline {
         timestamps()
     }
     environment {
-	POM_VERSION = getVersion()
         AWS_ECR_URL= "https://835839292917.dkr.ecr.us-east-1.amazonaws.com"
 	AWS_ECR_REGION = 'us-east-1'
         AWS_ECS_SERVICE = 'ch-dev-user-api-service'
