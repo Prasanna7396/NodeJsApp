@@ -41,13 +41,13 @@ pipeline {
                 }
             }
         }
-        stage('SonarQube Analysis'){
-             steps {
-               withSonarQubeEnv('sonarqube-8.9.2') { 
-		sh "mvn sonar:sonar -Dsonar.projectKey=NodeApp"
-            }
-          }
-        }
+        //stage('SonarQube Analysis'){
+         //    steps {
+        //      withSonarQubeEnv('sonarqube-8.9.2') { 
+	//	  sh "mvn sonar:sonar -Dsonar.projectKey=NodeApp"
+       //    }
+       //   }
+       // }
         stage('Docker Build'){
              steps {
 		  withCredentials([string(credentialsId: 'AWS-CREDENTIALS', variable: 'AWS_ECR_URL')]) {
