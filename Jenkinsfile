@@ -7,10 +7,10 @@ pipeline {
         timestamps()
     }
     environment {
-	    POM_VERSION = getVersion()
+	POM_VERSION = getVersion()
         JAR_NAME = getJarName()
         AWS_ECR_URL=https://835839292917.dkr.ecr.us-east-1.amazonaws.com
-		AWS_ECR_REGION = 'us-east-1'
+	AWS_ECR_REGION = 'us-east-1'
         AWS_ECS_SERVICE = 'ch-dev-user-api-service'
         AWS_ECS_TASK_DEFINITION = 'ch-dev-user-api-taskdefinition'
         AWS_ECS_COMPATIBILITY = 'FARGATE'
@@ -20,15 +20,15 @@ pipeline {
         AWS_ECS_CLUSTER = 'ch-dev'
         AWS_ECS_TASK_DEFINITION_PATH = './ecs/container-definition-update-image.json'
     }
-	tools {
-		jdk 'jdk11'
-	}
+    tools {
+	jdk 'jdk11'
+    }
     stages {
         stage('GetCode') { 
             steps {
-		script{
-		     properties([pipelineTriggers([pollSCM('H/1 * * * *')])])
-		  } 
+		//script{
+		//     properties([pipelineTriggers([pollSCM('H/1 * * * *')])])
+		//  } 
                 git branch: 'main', url: 'https://github.com/Prasanna7396/NodeJsApp.git'
 	     }
         } 	
@@ -49,15 +49,14 @@ pipeline {
 				sh "mvn sonar:sonar -Dsonar.projectKey=NodeApp"
             }
           }
-        }	
+        }
         stage('Docker Build'){
              steps {
-			 withCredentials([string(credentialsId: 'AWS-CREDENTIALS', variable: 'AWS_ECR_URL')]) {
+		  withCredentials([string(credentialsId: 'AWS-CREDENTIALS', variable: 'AWS_ECR_URL')]) {
                   echo "Creating the docker image"
 		          
 				  docker.build("${AWS_ECR_URL}:${POM_VERSION}", " .")
                }
 	  }
-	}	
-      }
+    }	
 }
