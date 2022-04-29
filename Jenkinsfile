@@ -57,7 +57,7 @@ pipeline {
 	     }
 	   }
          }
-	 stage('Push Terraform scripts to AWS S3')
+	 stage('Push Terraform scripts to AWS S3'){
           steps{
 		withCredentials([[
 		$class: 'AmazonWebServicesCredentialsBinding',
@@ -68,7 +68,7 @@ pipeline {
 		    s3Upload acl: 'Private', bucket: '${S3BUCKET}', includePathPattern: '*.tf', workingDir: 'terraform-scripts'
                 }
 	     }
-	  }
+          }
 	  stage('Terraform - K8s Cluster Deployment'){
            steps {
 		withCredentials([[
