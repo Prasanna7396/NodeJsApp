@@ -99,4 +99,5 @@ pipeline {
           subject: "Deployment Status - ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
         }	
     }
+  }
 }
