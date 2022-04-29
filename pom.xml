@@ -21,42 +21,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <revision>1.0-SNAPSHOT</revision>
   </properties>
-
-  <!--<build>
-    <plugins>
-      <plugin>
-        <groupId>com.github.eirslett</groupId>
-        <artifactId>frontend-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>install-node-and-npm</id>
-            <goals>
-              <goal>install-node-and-npm</goal>
-            </goals>
-			<configuration>
-				<nodeVersion>v12.9.0</nodeVersion>
-				<npmVersion>6.10.2</npmVersion>
-			</configuration>	
-          </execution>
-
-          <execution>
-            <id>npm-install</id>
-            <goals>
-              <goal>npm</goal>
-            </goals>
-          </execution>
-
-          <execution>
-            <id>npm-run</id>
-            <goals>
-              <goal>npm</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build> -->
-
   	<build>
 		<plugins>
 			<!-- Standard plugin to generate WAR -->
@@ -68,8 +32,6 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
-
-
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -121,9 +83,9 @@
 								<argument>run</argument>
 							</arguments>
 						</configuration>
-					</execution>
-                </executions> 
-			</plugin>
+				       </execution>
+                           </executions> 
+		     </plugin>
 		</plugins>
 	</build>
 </project>
