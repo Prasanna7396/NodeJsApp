@@ -66,7 +66,7 @@ pipeline {
 		accessKeyVariable: 'AWS_ACCESS_KEY_ID',
 		secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
 		]]){
-		    s3Upload acl: 'Private', bucket: '${S3BUCKET}', includePathPattern: '*.tf', workingDir: 'terraform-scripts'
+		    s3Upload acl: 'Private', bucket: "${S3BUCKET}", includePathPattern: '*.tf', workingDir: 'terraform-scripts'
               }
 	     }
           }
