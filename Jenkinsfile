@@ -82,7 +82,7 @@ pipeline {
 		 echo "------------------------ Terraform init completed -------------------------"
 		 sh 'cd terraform-scripts && terraform plan'
 		 echo "------------------------ Terraform plan completed -------------------------"
-		 sh 'cd terraform-scripts && terraform apply'
+		 sh 'cd terraform-scripts && terraform apply -auto-approve'
 		 echo "------------------------ Terraform apply completed -------------------------"
 		 }
 	       }
