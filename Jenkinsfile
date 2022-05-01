@@ -78,18 +78,16 @@ pipeline {
 		accessKeyVariable: 'AWS_ACCESS_KEY_ID',
 		secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
 		]]){
-		 sh 'cd terraform-scripts && terraform init'
-		 echo "------------------------ Terraform init completed -------------------------"
-		 sh 'cd terraform-scripts && terraform plan'
-		 echo "------------------------ Terraform plan completed -------------------------"
-		 sh 'cd terraform-scripts && terraform apply -auto-approve'
-		 echo "------------------------ Terraform apply completed -------------------------"
+		 sh 'cd terraform-scripts && terraform init && terraform plan && terraform apply -auto-approve'
 		 }
 	       }
 	   }
 	   stage('NodeJs application Deployment'){
             steps {
-		echo "Deployment completed !!"
+                //Adding the node in kubeconfig
+		sh 'aws eks --region "${AWS_DEFAULT_REGION}" update-kubeconfig --name eks_cluster_nodejs'
+		//Running k8-manifest files
+	        sh 'cd k8-manifest && kubectl apply -f nodejs-createNamespace.yml && kubectl apply -f nodejs-deployment.yml && kubectl apply -f nodejs-loadbalancer.yml'
 	    }
          } 
     }
