@@ -78,11 +78,11 @@ pipeline {
 		accessKeyVariable: 'AWS_ACCESS_KEY_ID',
 		secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
 		]]){
-		 sh 'terraform init'
+		 sh 'cd terraform-scripts && terraform init'
 		 echo "------------------------ Terraform init completed -------------------------"
-		 sh 'terraform plan'
+		 sh 'cd terraform-scripts && terraform plan'
 		 echo "------------------------ Terraform plan completed -------------------------"
-		 //sh 'terraform apply'
+		 //sh 'cd terraform-scripts && terraform apply'
 		 //echo "------------------------ Terraform apply completed -------------------------"
 		 }
 	       }
