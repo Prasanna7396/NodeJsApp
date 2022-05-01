@@ -70,23 +70,23 @@ pipeline {
               }
 	     }
           }
-//	  stage('Terraform - K8s Cluster Deployment'){
-//           steps {
-//		withCredentials([[
-//		$class: 'AmazonWebServicesCredentialsBinding',
-//		credentialsId: "AWS_CREDENTIALS",
-//		accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-//		secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-//		]]){
-//		 sh 'terraform init'
-//		 echo "------------------------ Terraform init completed -------------------------"
-//		 sh 'terraform plan'
-//		 echo "------------------------ Terraform plan completed -------------------------"
-//		 //sh 'terraform apply'
-//		 //echo "------------------------ Terraform apply completed -------------------------"
-//		 }
-//	       }
-//	   }
+	  stage('Terraform - K8s Cluster Deployment'){
+           steps {
+		withCredentials([[
+		$class: 'AmazonWebServicesCredentialsBinding',
+		credentialsId: "AWS_CREDENTIALS",
+		accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+		secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+		]]){
+		 sh 'terraform init'
+		 echo "------------------------ Terraform init completed -------------------------"
+		 sh 'terraform plan'
+		 echo "------------------------ Terraform plan completed -------------------------"
+		 //sh 'terraform apply'
+		 //echo "------------------------ Terraform apply completed -------------------------"
+		 }
+	       }
+	   }
 	   stage('NodeJs application Deployment'){
             steps {
 		echo "Deployment completed !!"

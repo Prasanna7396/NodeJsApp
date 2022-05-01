@@ -3,3 +3,4 @@ node
 node_modules
 terraform-scripts/terraform.tfstate.backup
 terraform-scripts/terraform.tfstate
+//terraform-scripts/*.tfvars
