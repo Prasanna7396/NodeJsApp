@@ -1,6 +1,8 @@
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nodeJsApp
+  namepsace: myapp
   labels:
     app: nodeJS
 spec:
@@ -15,10 +17,8 @@ spec:
     spec:
       containers:
         - name: nodeJsApp
-          image: 835839292917.dkr.ecr.us-east-1.amazonaws.com/jenkins-nodejs:latest
+          image: 894328728902.dkr.ecr.us-east-1.amazonaws.com/jenkins-nodejs:latest
           ports:
             - protocol: TCP
-              port: 8050
-              targetPort: 8050
-              nodePort: 30009
-
+              containerPort: 8050
+              name : web     
