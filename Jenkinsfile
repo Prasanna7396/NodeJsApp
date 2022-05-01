@@ -14,7 +14,6 @@ pipeline {
             script{
                 properties([pipelineTriggers([pollSCM('H */1 * * *')])])
 	      } 
-              //git branch: 'main', credentialsId: 'myGitHub', url: 'https://github.com/Prasanna7396/NodeJsApp.git'
               checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'myGithub', url: 'https://github.com/Prasanna7396/NodeJsApp.git']]])
 	   }
         } 	
