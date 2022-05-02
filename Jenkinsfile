@@ -86,7 +86,10 @@ pipeline {
                 //Adding the node in kubeconfig
 		sh 'sudo aws eks --region "${AWS_DEFAULT_REGION}" update-kubeconfig --name eks_cluster_nodejs'
 		//Running k8-manifest files
-	        sh 'cd k8-manifest && kubectl apply -f nodejs-createNamespace.yml && kubectl apply -f nodejs-deployment.yml && kubectl apply -f nodejs-loadbalancer.yml'
+	        sh 'cd k8-manifest && \
+                    kubectl apply -f nodejs-createNamespace.yml && \ 
+                    kubectl apply -f nodejs-deployment.yml && \ 
+                    kubectl apply -f nodejs-loadbalancer.yml'
 	    }
          } 
     }
