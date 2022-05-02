@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nodeJsApp
+  namespace: myapp
+spec:
+  type: LoadBalancer
+  selector:
+    app: nodeJS
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8050
+      targetPort: 8050
