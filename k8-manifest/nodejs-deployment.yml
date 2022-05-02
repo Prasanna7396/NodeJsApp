@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nodejs-app
-  namepsace: myapp
+  namespace: myapp
   labels:
     app: nodejs-app
 spec:
