@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nodeJsApp
+  name: nodejs-app
   namepsace: myapp
   labels:
-    app: nodeJS
+    app: nodejs-app
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: nodeJS
+      app: nodejs-app
   template:
     metadata:
       labels:
-        app: nodeJs
+        app: nodejs-app
     spec:
       containers:
-        - name: nodeJsApp
+        - name: node-myapp
           image: 894328728902.dkr.ecr.us-east-1.amazonaws.com/jenkins-nodejs:latest
           ports:
             - protocol: TCP
