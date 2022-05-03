@@ -80,7 +80,7 @@ pipeline {
     stage('NodeJs application Deployment') {
       steps {
         //Adding the node in kubeconfig
-        sh 'aws eks --region "${AWS_DEFAULT_REGION}" update-kubeconfig --name eks_cluster_nodejs'
+        sh 'sudo aws eks --region "${AWS_DEFAULT_REGION}" update-kubeconfig --name eks_cluster_nodejs'
         //Running k8-manifest files
         sh 'cd k8-manifest && sudo kubectl apply -f createNamespace.yml && sudo  kubectl apply -f app-deployment.yml && sudo kubectl apply -f loadbalancer-sv.yml'
       }
