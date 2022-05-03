@@ -24,13 +24,13 @@ pipeline {
                }
             }
         }
-//        stage('SonarQube Analysis'){
-//         steps{
-//            withSonarQubeEnv('sonarqube-8.9.2') { 
-//	       sh "mvn sonar:sonar -Dsonar.projectKey=NodeApp"
-//             }
-//           }
-//        }	
+        stage('SonarQube Analysis'){
+         steps{
+            withSonarQubeEnv('sonarqube-8.9.2') { 
+	       sh "mvn sonar:sonar -Dsonar.projectKey=NodeApp"
+             }
+           }
+        }	
         stage('Docker Build'){
 	   steps {
             script {
@@ -54,18 +54,18 @@ pipeline {
      	     }
      	   }
          }
-//    	 stage('Push Terraform scripts to AWS S3'){
-//          steps{
-//    		withCredentials([[
-//        	$class: 'AmazonWebServicesCredentialsBinding',
-//        	credentialsId: "AWS_CREDENTIALS",
-//		accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-//		secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-//		]]){
-//		    s3Upload acl: 'Private', bucket: "${S3BUCKET}", includePathPattern: '*.tf', workingDir: 'terraform-scripts'
-//               }
-//	     }
-//          }
+    	 stage('Push Terraform scripts to AWS S3'){
+          steps{
+    		withCredentials([[
+        	$class: 'AmazonWebServicesCredentialsBinding',
+        	credentialsId: "AWS_CREDENTIALS",
+		accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+		secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+		]]){
+		    s3Upload acl: 'Private', bucket: "${S3BUCKET}", includePathPattern: '*.tf', workingDir: 'terraform-scripts'
+               }
+	     }
+          }
 	  stage('Terraform - K8s Cluster Deployment'){
            steps {
 		withCredentials([[
