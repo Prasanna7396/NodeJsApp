@@ -4,7 +4,6 @@ pipeline {
         AWS_ACCOUNT_ID="894328728902"
         AWS_DEFAULT_REGION="us-east-1" 
         IMAGE_REPO_NAME="jenkins-nodejs"
-        IMAGE_TAG="latest"
         S3BUCKET="terraformscripts-nodejsapp"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     }
@@ -35,7 +34,7 @@ pipeline {
         stage('Docker Build'){
 	   steps {
             script {
-               dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+               dockerImage = docker.build "${IMAGE_REPO_NAME}:${BUILD_NUMBER}"
             }  
           }
         }
@@ -48,8 +47,8 @@ pipeline {
         post {
           success {
              script {
-               sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:$IMAGE_TAG"
-               sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+               sh "docker tag ${IMAGE_REPO_NAME}:${BUILD_NUMBER} ${REPOSITORY_URI}:${BUILD_NUMBER}"
+               sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${BUILD_NUMBER}"
                }
      	     }
      	   }
