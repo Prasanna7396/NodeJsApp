@@ -7,7 +7,7 @@ RUN apt update && \
 
 WORKDIR /usr/src/app
 
-COPY index.js package.json package-lock.json .
+COPY index.js package.json package-lock.json ./
 
 RUN npm install
 
