@@ -34,7 +34,8 @@ pipeline {
         stage('Docker Build'){
 	   steps {
             script {
-               dockerImage = docker.build "${IMAGE_REPO_NAME}:${BUILD_NUMBER}"
+               //dockerImage = docker.build "${IMAGE_REPO_NAME}:${BUILD_NUMBER}"
+		dockerImage = docker.build "${REPOSITORY_URI}:${BUILD_NUMBER}"
             }  
           }
         }
@@ -47,7 +48,7 @@ pipeline {
         post {
           success {
              script {
-               sh "docker tag ${IMAGE_REPO_NAME}:${BUILD_NUMBER} ${REPOSITORY_URI}:${BUILD_NUMBER}"
+               //sh "docker tag ${IMAGE_REPO_NAME}:${BUILD_NUMBER} ${REPOSITORY_URI}:${BUILD_NUMBER}"
                sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${BUILD_NUMBER}"
                }
      	     }
