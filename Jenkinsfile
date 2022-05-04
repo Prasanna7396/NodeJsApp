@@ -35,7 +35,7 @@ pipeline {
     stage('Docker Build Image') {
       steps {
         script {
-          dockerImage = docker.build "${REPOSITORY_URI}:${BUILD_NUMBER}"
+          dockerImage = docker.build "${REPOSITORY_URI}:latest"
         }
       }
     }
@@ -48,7 +48,7 @@ pipeline {
       post {
         success {
           script {
-            sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${BUILD_NUMBER}"
+            sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:latest"
           }
         }
       }

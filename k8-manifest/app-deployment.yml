@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: node-myapp
-          image: 894328728902.dkr.ecr.us-east-1.amazonaws.com/jenkins-nodejs:latest
+          image: 894328728902.dkr.ecr.us-east-1.amazonaws.com/jenkins-nodejs
           ports:
             - protocol: TCP
               containerPort: 8050
