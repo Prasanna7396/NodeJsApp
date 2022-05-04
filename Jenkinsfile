@@ -10,8 +10,7 @@ pipeline {
   stages {
     stage('Git Checkout') {
       steps {
-        checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'myGithub', url: 'https://github.com/Prasanna7396/NodeJsApp.git']
-        ]])
+        checkout poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'myGithub', url: 'https://github.com/Prasanna7396/NodeJsApp.git']]]
       }
     }
     stage('Build Application') {
